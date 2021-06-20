@@ -54,3 +54,6 @@ dkms.conf
 # Exclude settings for report and test files
 test_colk/
 report/
+
+# CMakeLists
+CMakeLists.txt
