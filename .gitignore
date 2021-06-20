@@ -55,5 +55,6 @@ dkms.conf
 ignored/
 report/
 
-# CMakeLists
+# CMake
 CMakeLists.txt
+cmake-build-debug/
