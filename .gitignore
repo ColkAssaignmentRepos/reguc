@@ -50,3 +50,11 @@ modules.order
 Module.symvers
 Mkfile.old
 dkms.conf
+
+# Exclude settings for report and test files
+ignored/
+report/
+
+# CMake
+CMakeLists.txt
+cmake-build-debug/
