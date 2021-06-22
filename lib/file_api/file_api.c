@@ -14,14 +14,14 @@
 #define DEFAULT_STR_BUFFER_LENGTH 512
 #define DEFAULT_BUFFER_BYTES DEFAULT_STR_BUFFER_LENGTH * sizeof(char)
 
-char **malloc_read_file_lines(char *filename, int cut_return);
+char **malloc_read_file_lines(char *filename);
 
 char *malloc_read_file_in_one_array(char *filename);
 
 long long int line_number(char *filename);
 
 
-char **malloc_read_file_lines(char *filename, int cut_return) {
+char **malloc_read_file_lines(char *filename) {
     FILE *fp = NULL;
     char **result = NULL;
     char *current_line = NULL;
@@ -70,7 +70,7 @@ char **malloc_read_file_lines(char *filename, int cut_return) {
         while (1) {
             int continue_required = !(
                     find_char(current_line, current_buffer_bytes, '\n') ||
-                    find_char(current_line, current_buffer_bytes, EOF));
+                    find_char(current_line, current_buffer_bytes, EOF)) && (!reached_eof);
             if (!continue_required) {
                 break;
             }
@@ -89,11 +89,6 @@ char **malloc_read_file_lines(char *filename, int cut_return) {
 
             strcat(current_line, buf);
             memset(buf, '\0', DEFAULT_BUFFER_BYTES);
-        }
-
-        if (cut_return == 1) {
-            delete_char(current_line, current_buffer_bytes / sizeof(char), '\n');
-            delete_char(current_line, current_buffer_bytes / sizeof(char), '\r');
         }
 
         result[line_count] = (char *) malloc(current_buffer_bytes);
@@ -119,7 +114,7 @@ char *malloc_read_file_in_one_array(char *filename) {
     char *result = NULL;
     long long int line_num = line_number(filename);
 
-    read_lines = malloc_read_file_lines(filename, 0);
+    read_lines = malloc_read_file_lines(filename);
     result = malloc_expanded_char_matrix(read_lines, line_num);
 
     return result;
