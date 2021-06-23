@@ -41,5 +41,9 @@ int main(int argc, char **argv) {
         printf("%s\n", extracted_result[i]);
     }
 
+    free(file_content);
+    char_matrix_free(extracted_result, regmatch_result.match_num);
+    regmatchn_free(&regmatch_result);
+
     return 0;
 }
