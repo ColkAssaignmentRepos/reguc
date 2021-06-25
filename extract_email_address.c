@@ -6,7 +6,7 @@
 #include "./lib/regex_api/regex_api.h"
 #include "./lib/print_utils.h"
 
-#define PATTERN_STRING "[a-zA-Z0-9_+-]+(.[a-zA-Z0-9_+-]+)*@([a-zA-Z0-9][a-zA-Z0-9-]*[a-zA-Z0-9]*\\.)+[a-zA-Z]{2,}"
+#define PATTERN_STRING "[a-zA-Z0-9!#$'=_`~\\+\\-]+(.[a-zA-Z0-9!#$'=_`~\\+\\-]+)*@([a-zA-Z0-9]*[a-zA-Z0-9]*\\.)+[a-zA-Z]{2,}"
 
 
 int main(int argc, char **argv) {
